@@ -10,6 +10,8 @@
 		220DD2C8235657B400ACEC47 /* DisplayProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DD2C7235657B400ACEC47 /* DisplayProductsViewController.swift */; };
 		220DD2D1235667A400ACEC47 /* ProductViewCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DD2CF235667A400ACEC47 /* ProductViewCellTableViewCell.swift */; };
 		220DD2D2235667A400ACEC47 /* ProductViewCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 220DD2D0235667A400ACEC47 /* ProductViewCellTableViewCell.xib */; };
+		22B9039823578AD60097983C /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B9039723578AD60097983C /* Product.swift */; };
+		22B9039A235794C90097983C /* AddProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B90399235794C90097983C /* AddProductViewController.swift */; };
 		22FD73CE2343BE62009F73B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FD73CD2343BE62009F73B7 /* AppDelegate.swift */; };
 		22FD73D02343BE62009F73B7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FD73CF2343BE62009F73B7 /* SceneDelegate.swift */; };
 		22FD73D22343BE62009F73B7 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FD73D12343BE62009F73B7 /* WelcomeViewController.swift */; };
@@ -29,6 +31,8 @@
 		220DD2C7235657B400ACEC47 /* DisplayProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayProductsViewController.swift; sourceTree = "<group>"; };
 		220DD2CF235667A400ACEC47 /* ProductViewCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewCellTableViewCell.swift; sourceTree = "<group>"; };
 		220DD2D0235667A400ACEC47 /* ProductViewCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductViewCellTableViewCell.xib; sourceTree = "<group>"; };
+		22B9039723578AD60097983C /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		22B90399235794C90097983C /* AddProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductViewController.swift; sourceTree = "<group>"; };
 		22FD73CA2343BE62009F73B7 /* LeafLabel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeafLabel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22FD73CD2343BE62009F73B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22FD73CF2343BE62009F73B7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +109,7 @@
 			children = (
 				22FD73ED2343E9A1009F73B7 /* MenuViewController.swift */,
 				220DD2C7235657B400ACEC47 /* DisplayProductsViewController.swift */,
+				22B90399235794C90097983C /* AddProductViewController.swift */,
 				22FD73EF2343ECD4009F73B7 /* LoginViewController.swift */,
 				22FD73E92343CE91009F73B7 /* RegisterViewController.swift */,
 				22FD73D12343BE62009F73B7 /* WelcomeViewController.swift */,
@@ -117,6 +122,7 @@
 		22FD73E32343BED7009F73B7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				22B9039723578AD60097983C /* Product.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -280,7 +286,9 @@
 			files = (
 				22FD73F02343ECD4009F73B7 /* LoginViewController.swift in Sources */,
 				22FD73D22343BE62009F73B7 /* WelcomeViewController.swift in Sources */,
+				22B9039A235794C90097983C /* AddProductViewController.swift in Sources */,
 				22FD73EE2343E9A1009F73B7 /* MenuViewController.swift in Sources */,
+				22B9039823578AD60097983C /* Product.swift in Sources */,
 				22FD73CE2343BE62009F73B7 /* AppDelegate.swift in Sources */,
 				220DD2D1235667A400ACEC47 /* ProductViewCellTableViewCell.swift in Sources */,
 				220DD2C8235657B400ACEC47 /* DisplayProductsViewController.swift in Sources */,

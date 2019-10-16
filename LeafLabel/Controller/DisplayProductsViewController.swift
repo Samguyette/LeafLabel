@@ -19,6 +19,8 @@ class DisplayProductsViewController: UIViewController, UITableViewDelegate, UITa
         productTableView.dataSource = self
         
         productTableView.register(UINib(nibName: "ProductViewCellTableViewCell", bundle: nil), forCellReuseIdentifier: "customProductCell")
+        
+        configureTableView()
     }
     
 
@@ -31,5 +33,9 @@ class DisplayProductsViewController: UIViewController, UITableViewDelegate, UITa
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
+    }
+    func configureTableView() {
+        productTableView.rowHeight = UITableView.automaticDimension
+        productTableView.estimatedRowHeight = 120.0
     }
 }

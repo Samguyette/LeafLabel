@@ -191,6 +191,7 @@
                                 </state>
                                 <connections>
                                     <action selector="loginPressed:" destination="nR4-0Q-TKm" eventType="touchUpInside" id="KRg-C1-0Hd"/>
+                                    <segue destination="JMd-MI-j6W" kind="show" id="SeH-S8-pyH"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -208,6 +209,50 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZxN-7F-9GY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3032" y="117"/>
+        </scene>
+        <!--Add New Product-->
+        <scene sceneID="bc9-9d-TIg">
+            <objects>
+                <viewController id="JMd-MI-j6W" customClass="AddProductViewController" customModule="LeafLabel" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sBk-VV-OlY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Co-2e-zD6">
+                                <rect key="frame" x="63" y="254" width="289" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Product Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sXq-GU-TAR">
+                                <rect key="frame" x="63" y="222" width="124" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cEl-Fo-rdI">
+                                <rect key="frame" x="20" y="732" width="374" height="68"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Add Product">
+                                    <color key="titleColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="efe-JA-qZw"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add New Product" id="BY6-Fu-OVj"/>
+                    <connections>
+                        <outlet property="addProductBtn" destination="cEl-Fo-rdI" id="VlC-v5-Jbm"/>
+                        <outlet property="productNameTextField" destination="1Co-2e-zD6" id="C45-QC-LlX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XHk-SI-6xl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4411.594202898551" y="-206.25"/>
         </scene>
         <!--All Products-->
         <scene sceneID="YtE-Lt-12t">
@@ -238,7 +283,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WEI-SE-3nB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4022" y="117"/>
+            <point key="canvasLocation" x="4403" y="505"/>
         </scene>
         <!--Login-->
         <scene sceneID="Bka-hQ-kyb">
