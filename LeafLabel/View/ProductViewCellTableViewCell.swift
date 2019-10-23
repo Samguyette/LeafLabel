@@ -11,6 +11,7 @@ import UIKit
 class ProductViewCellTableViewCell: UITableViewCell {
 
     @IBOutlet var productName: UILabel!
+    @IBOutlet var productID: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

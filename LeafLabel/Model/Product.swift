@@ -7,5 +7,6 @@
 class Product {
     
     var productName : String = ""
+    var productID : String = ""
     
 }

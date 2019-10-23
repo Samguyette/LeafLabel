@@ -239,6 +239,9 @@
                                 <state key="normal" title="Add Product">
                                     <color key="titleColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="addPressed:" destination="JMd-MI-j6W" eventType="touchUpInside" id="BEG-aB-lYG"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -246,7 +249,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Add New Product" id="BY6-Fu-OVj"/>
                     <connections>
-                        <outlet property="addProductBtn" destination="cEl-Fo-rdI" id="VlC-v5-Jbm"/>
+                        <outlet property="addProductBtn" destination="cEl-Fo-rdI" id="GJa-Zl-yJd"/>
                         <outlet property="productNameTextField" destination="1Co-2e-zD6" id="C45-QC-LlX"/>
                     </connections>
                 </viewController>
