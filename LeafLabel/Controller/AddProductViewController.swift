@@ -7,14 +7,17 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseFirestore
+import FirebaseStorage
+import FirebaseAuth
 
-class AddProductViewController: UIViewController, UITextFieldDelegate {
+
+class AddProductViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     //might need to add more delegates above
     @IBOutlet var productNameTextField: UITextField!
     @IBOutlet var addProductBtn: UIButton!
-    
+    @IBOutlet var demoImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,27 +25,87 @@ class AddProductViewController: UIViewController, UITextFieldDelegate {
         productNameTextField.delegate = self
     }
     
+    @IBAction func selectImageView(_ sender: Any) {
+        let picker = UIImagePickerController()
+        //might need fixing
+        picker.delegate = (self as UIImagePickerControllerDelegate & UINavigationControllerDelegate)
+        //picker.allowsEditing = true
+        
+        present(picker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+
+        var selectedImageFromPicker: UIImage?
+        if let editedImage = info[.editedImage] as? UIImage {
+            selectedImageFromPicker = editedImage
+        } else if let originalImage = info[.originalImage] as? UIImage {
+            selectedImageFromPicker = originalImage
+        }
+        
+        if let selectedImage = selectedImageFromPicker {
+            demoImageView.image = selectedImage
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        print("selection cancelled")
+        dismiss(animated: true, completion: nil)
+    }
+    
     
     @IBAction func addPressed(_ sender: Any) {
         productNameTextField.isEnabled = false
         addProductBtn.isEnabled = false
         
-        let identifier = ShortCodeGenerator.getCode(length: 8)
-        var userEmail = Auth.auth().currentUser?.email
-        userEmail = userEmail!.replacingOccurrences(of: ".", with: ",", options: NSString.CompareOptions.literal, range: nil)
-        let productsDB = Database.database().reference().child(userEmail!)
-        let productDict = ["ProductName": productNameTextField.text!, "ProductID": identifier]
+        //loading image
         
-        //creates random key for product
-        productsDB.childByAutoId().setValue(productDict){
-            (error, refrence) in
-            if error != nil{
-                print(error!)
-            } else{
-                print("Product saved successfully")
-                self.productNameTextField.isEnabled = true
-                self.addProductBtn.isEnabled = true
-                self.productNameTextField.text = ""
+        //store image
+        guard let image = demoImageView.image, let data = image.jpegData(compressionQuality: 1.0) else{
+            print("Something went wrong uploading picture.")
+            return
+        }
+        let imageName = UUID().uuidString
+        let imageRef = Storage.storage().reference().child("imagesFolder").child(imageName)
+        
+        imageRef.putData(data, metadata: nil) { (metadata, err) in
+            if err != nil{
+                print("There was a problem storing picture.")
+                return
+            }
+            imageRef.downloadURL { (url, nil) in
+                if err != nil{
+                    print("There was a problem storing picture.")
+                    return
+                }
+                guard let url = url else{
+                    print("Another error.")
+                    return
+                }
+            
+                let identifier = ShortCodeGenerator.getCode(length: 8)
+                var userEmail = Auth.auth().currentUser?.email
+                let urlString = url.absoluteString
+                userEmail = userEmail!.replacingOccurrences(of: ".", with: ",", options: NSString.CompareOptions.literal, range: nil)
+                
+                
+                //let productsDB = Database.database().reference().child(userEmail!)
+                let dataRef = Firestore.firestore().collection(userEmail!).document()
+                let documentID = dataRef.documentID
+                
+                let productDict = ["productName": self.productNameTextField.text!, "userProductID": identifier, "compProductID": documentID, "imageURL": urlString, "imageName": imageName]
+                
+                dataRef.setData(productDict) { (error) in
+                    if error != nil{
+                        print(error!)
+                    } else{
+                        print("Product saved successfully")
+                        self.productNameTextField.isEnabled = true
+                        self.addProductBtn.isEnabled = true
+                        self.productNameTextField.text = ""
+                    }
+                }
             }
         }
     }

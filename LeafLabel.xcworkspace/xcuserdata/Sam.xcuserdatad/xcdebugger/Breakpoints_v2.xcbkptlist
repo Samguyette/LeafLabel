@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "02B57F25-610C-44DA-8894-08DED5C529F4"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.AddressBreakpoint">
+         <BreakpointContent
+            uuid = "3DD6874B-4882-4568-B1D7-73457F53CFEF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            symbolName = "*0x101c2d5f6">
+            <Locations>
+               <Location
+                  uuid = "3DD6874B-4882-4568-B1D7-73457F53CFEF - 658ee08da6d9e86a"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "apmpb_free_event_field"
+                  moduleName = "LeafLabel"
+                  usesParentBreakpointCondition = "Yes"
+                  offsetFromSymbolStart = "33">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

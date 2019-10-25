@@ -6,9 +6,11 @@ target 'LeafLabel' do
   use_frameworks!
 
   # Pods for LeafLabel
-pod 'Firebase'
+pod 'FirebaseStorage'
+pod 'FirebaseFirestore'
 pod 'Firebase/Auth'
-pod 'Firebase/Database'
+pod 'Kingfisher'
 pod 'SVProgressHUD'
+
 
 end

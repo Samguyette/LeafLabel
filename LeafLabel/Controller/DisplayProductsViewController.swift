@@ -7,16 +7,24 @@
 //
 
 import UIKit
-import Firebase
+import FirebaseFirestore
+import FirebaseAuth
+import FirebaseStorage
+import Kingfisher
 
 class DisplayProductsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var productArray:[Product] = [Product]()
     @IBOutlet var productTableView: UITableView!
+    var databaseRef: Firestore!
+    var storageRef: StorageReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        //refrences to Databases
+        databaseRef = Firestore.firestore()
+        storageRef = Storage.storage().reference()
+        
         productTableView.delegate = self
         productTableView.dataSource = self
         
@@ -31,6 +39,7 @@ class DisplayProductsViewController: UIViewController, UITableViewDelegate, UITa
         let cell = tableView.dequeueReusableCell(withIdentifier: "customProductCell", for: indexPath) as! ProductViewCellTableViewCell
         cell.productName.text = productArray[indexPath.row].productName
         cell.productID.text = productArray[indexPath.row].productID
+        cell.photoImageView.image = productArray[indexPath.row].photoImageView
         
         return cell
     }
@@ -45,22 +54,40 @@ class DisplayProductsViewController: UIViewController, UITableViewDelegate, UITa
     func retrieveProducts(){
         var userEmail = Auth.auth().currentUser?.email
         userEmail = userEmail!.replacingOccurrences(of: ".", with: ",", options: NSString.CompareOptions.literal, range: nil)
-        let productDB = Database.database().reference().child(userEmail!)
         
-        productDB.observe(.childAdded) { (snapshot) in
-            //will have to change dictionary type for pictures later
-            //look at the end of lecture 426
-            let snapshotValue = snapshot.value as! Dictionary<String, String>
-            let name = snapshotValue["ProductName"]!
-            let id = snapshotValue["ProductID"]!
-            
-            let product = Product()
-            product.productName = name
-            product.productID = id
-            
-            self.productArray.append(product)
-            self.configureTableView()
-            self.productTableView.reloadData()
+        databaseRef.collection(userEmail!).getDocuments() { (snapshot, error) in
+
+            if let error = error {
+
+                print(error.localizedDescription)
+
+            } else {
+
+                if let snapshot = snapshot {
+
+                    for document in snapshot.documents {
+
+                        let data = document.data()
+                        let product = Product()
+                        //photo
+                        let urlString = data["imageURL"] as! String
+                        Storage.storage().reference(forURL: urlString).getData(maxSize: 10 * 1024 * 1024, completion: { (data, error) in
+                            DispatchQueue.main.async {
+                                product.photoImageView = UIImage(data: data!)
+                                print("Image loaded")
+                                self.productTableView.reloadData()
+                            }
+                        })
+                        
+                        //strings
+                        product.productName = data["productName"] as! String
+                        product.productID = data["userProductID"] as! String
+                        self.productArray.append(product)
+                        self.configureTableView()
+                        self.productTableView.reloadData()
+                    }
+                }
+            }
         }
     }
 }
