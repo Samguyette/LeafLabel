@@ -1,20 +1,21 @@
 //
-//  ProductViewCellTableViewCell.swift
+//  DashboardTableViewCell.swift
 //  LeafLabel
 //
-//  Created by Sam Guyette on 10/15/19.
+//  Created by Sam Guyette on 10/26/19.
 //  Copyright © 2019 Sam Guyette. All rights reserved.
 //
 
 import UIKit
 
-class ProductViewCellTableViewCell: UITableViewCell {
+class DashboardTableViewCell: UITableViewCell {
 
+    
     @IBOutlet var productName: UILabel!
     @IBOutlet var productID: UILabel!
+    @IBOutlet var gramCount: UILabel!
     @IBOutlet var labelsPrinted: UILabel!
-    @IBOutlet var photoImageView: UIImageView!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -25,4 +26,5 @@ class ProductViewCellTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
 }

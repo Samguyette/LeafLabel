@@ -3,13 +3,18 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		220DD2C8235657B400ACEC47 /* DisplayProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DD2C7235657B400ACEC47 /* DisplayProductsViewController.swift */; };
 		220DD2D1235667A400ACEC47 /* ProductViewCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220DD2CF235667A400ACEC47 /* ProductViewCellTableViewCell.swift */; };
 		220DD2D2235667A400ACEC47 /* ProductViewCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 220DD2D0235667A400ACEC47 /* ProductViewCellTableViewCell.xib */; };
+		224AE47923647573008C3B09 /* PrintConViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224AE47823647573008C3B09 /* PrintConViewController.swift */; };
+		224AE47B2364A333008C3B09 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224AE47A2364A333008C3B09 /* DashboardViewController.swift */; };
+		224AE4812364AACF008C3B09 /* DashboardProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224AE4802364AACF008C3B09 /* DashboardProduct.swift */; };
+		224AE4842364B4B9008C3B09 /* DashboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224AE4822364B4B9008C3B09 /* DashboardTableViewCell.swift */; };
+		224AE4852364B4B9008C3B09 /* DashboardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 224AE4832364B4B9008C3B09 /* DashboardTableViewCell.xib */; };
 		22B9039823578AD60097983C /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B9039723578AD60097983C /* Product.swift */; };
 		22B9039A235794C90097983C /* AddProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B90399235794C90097983C /* AddProductViewController.swift */; };
 		22FD73CE2343BE62009F73B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FD73CD2343BE62009F73B7 /* AppDelegate.swift */; };
@@ -31,6 +36,11 @@
 		220DD2C7235657B400ACEC47 /* DisplayProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayProductsViewController.swift; sourceTree = "<group>"; };
 		220DD2CF235667A400ACEC47 /* ProductViewCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewCellTableViewCell.swift; sourceTree = "<group>"; };
 		220DD2D0235667A400ACEC47 /* ProductViewCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductViewCellTableViewCell.xib; sourceTree = "<group>"; };
+		224AE47823647573008C3B09 /* PrintConViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintConViewController.swift; sourceTree = "<group>"; };
+		224AE47A2364A333008C3B09 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		224AE4802364AACF008C3B09 /* DashboardProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardProduct.swift; sourceTree = "<group>"; };
+		224AE4822364B4B9008C3B09 /* DashboardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTableViewCell.swift; sourceTree = "<group>"; };
+		224AE4832364B4B9008C3B09 /* DashboardTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashboardTableViewCell.xib; sourceTree = "<group>"; };
 		22B9039723578AD60097983C /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		22B90399235794C90097983C /* AddProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductViewController.swift; sourceTree = "<group>"; };
 		22FD73CA2343BE62009F73B7 /* LeafLabel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeafLabel.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +109,8 @@
 				22FD73D32343BE62009F73B7 /* Main.storyboard */,
 				220DD2D0235667A400ACEC47 /* ProductViewCellTableViewCell.xib */,
 				220DD2CF235667A400ACEC47 /* ProductViewCellTableViewCell.swift */,
+				224AE4832364B4B9008C3B09 /* DashboardTableViewCell.xib */,
+				224AE4822364B4B9008C3B09 /* DashboardTableViewCell.swift */,
 				22FD73D82343BE64009F73B7 /* LaunchScreen.storyboard */,
 			);
 			path = View;
@@ -109,6 +121,8 @@
 			children = (
 				22FD73ED2343E9A1009F73B7 /* MenuViewController.swift */,
 				220DD2C7235657B400ACEC47 /* DisplayProductsViewController.swift */,
+				224AE47A2364A333008C3B09 /* DashboardViewController.swift */,
+				224AE47823647573008C3B09 /* PrintConViewController.swift */,
 				22B90399235794C90097983C /* AddProductViewController.swift */,
 				22FD73EF2343ECD4009F73B7 /* LoginViewController.swift */,
 				22FD73E92343CE91009F73B7 /* RegisterViewController.swift */,
@@ -123,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				22B9039723578AD60097983C /* Product.swift */,
+				224AE4802364AACF008C3B09 /* DashboardProduct.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -217,6 +232,7 @@
 				22FD73E62343BFC4009F73B7 /* GoogleService-Info.plist in Resources */,
 				220DD2D2235667A400ACEC47 /* ProductViewCellTableViewCell.xib in Resources */,
 				22FD73D72343BE64009F73B7 /* Assets.xcassets in Resources */,
+				224AE4852364B4B9008C3B09 /* DashboardTableViewCell.xib in Resources */,
 				22FD73EC2343D029009F73B7 /* Default-568h@2x.png in Resources */,
 				22FD73D52343BE62009F73B7 /* Main.storyboard in Resources */,
 			);
@@ -273,10 +289,14 @@
 			files = (
 				22FD73F02343ECD4009F73B7 /* LoginViewController.swift in Sources */,
 				22FD73D22343BE62009F73B7 /* WelcomeViewController.swift in Sources */,
+				224AE47923647573008C3B09 /* PrintConViewController.swift in Sources */,
 				22B9039A235794C90097983C /* AddProductViewController.swift in Sources */,
 				22FD73EE2343E9A1009F73B7 /* MenuViewController.swift in Sources */,
 				22B9039823578AD60097983C /* Product.swift in Sources */,
+				224AE4842364B4B9008C3B09 /* DashboardTableViewCell.swift in Sources */,
 				22FD73CE2343BE62009F73B7 /* AppDelegate.swift in Sources */,
+				224AE47B2364A333008C3B09 /* DashboardViewController.swift in Sources */,
+				224AE4812364AACF008C3B09 /* DashboardProduct.swift in Sources */,
 				220DD2D1235667A400ACEC47 /* ProductViewCellTableViewCell.swift in Sources */,
 				220DD2C8235657B400ACEC47 /* DisplayProductsViewController.swift in Sources */,
 				22FD73D02343BE62009F73B7 /* SceneDelegate.swift in Sources */,

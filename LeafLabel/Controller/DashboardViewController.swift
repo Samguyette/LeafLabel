@@ -1,8 +1,8 @@
 //
-//  DisplayProductsViewController.swift
+//  DashboardViewController.swift
 //  LeafLabel
 //
-//  Created by Sam Guyette on 10/15/19.
+//  Created by Sam Guyette on 10/26/19.
 //  Copyright © 2019 Sam Guyette. All rights reserved.
 //
 
@@ -11,34 +11,36 @@ import FirebaseFirestore
 import FirebaseAuth
 import FirebaseStorage
 
-class DisplayProductsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class DashboardViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    var productArray:[Product] = [Product]()
-    @IBOutlet var productTableView: UITableView!
+    var productArray:[DashboardProduct] = [DashboardProduct]()
+    @IBOutlet var dashboardTableView: UITableView!
     var databaseRef: Firestore!
     var storageRef: StorageReference!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         //refrences to Databases
         databaseRef = Firestore.firestore()
         storageRef = Storage.storage().reference()
         
-        productTableView.delegate = self
-        productTableView.dataSource = self
+        dashboardTableView.delegate = self
+        dashboardTableView.dataSource = self
         
-        productTableView.register(UINib(nibName: "ProductViewCellTableViewCell", bundle: nil), forCellReuseIdentifier: "customProductCell")
+        dashboardTableView.register(UINib(nibName: "DashboardTableViewCell", bundle: nil), forCellReuseIdentifier: "customDashboardCell")
         
         configureTableView()
         retrieveProducts()
     }
-    
+
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "customProductCell", for: indexPath) as! ProductViewCellTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customDashboardCell", for: indexPath) as! DashboardTableViewCell
         cell.productName.text = productArray[indexPath.row].productName
         cell.productID.text = productArray[indexPath.row].productID
-        cell.photoImageView.image = productArray[indexPath.row].photoImageView
+        //cell.productImageView.image = productArray[indexPath.row].photoImageView
+        cell.labelsPrinted.text = "\(productArray[indexPath.row].labelsPrinted)"
+        cell.gramCount.text = "\(productArray[indexPath.row].gramCount)"
         
         return cell
     }
@@ -46,10 +48,10 @@ class DisplayProductsViewController: UIViewController, UITableViewDelegate, UITa
         return productArray.count
     }
     func configureTableView() {
-        productTableView.rowHeight = 120.0
-        productTableView.estimatedRowHeight = 120.0
+        dashboardTableView.rowHeight = 120.0
+        dashboardTableView.estimatedRowHeight = 120.0
     }
-    
+
     func retrieveProducts(){
         var userEmail = Auth.auth().currentUser?.email
         userEmail = userEmail!.replacingOccurrences(of: ".", with: ",", options: NSString.CompareOptions.literal, range: nil)
@@ -67,23 +69,26 @@ class DisplayProductsViewController: UIViewController, UITableViewDelegate, UITa
                     for document in snapshot.documents {
 
                         let data = document.data()
-                        let product = Product()
+                        let dashboardProduct = DashboardProduct()
                         //photo
                         let urlString = data["imageURL"] as! String
                         Storage.storage().reference(forURL: urlString).getData(maxSize: 10 * 1024 * 1024, completion: { (data, error) in
                             DispatchQueue.main.async {
-                                product.photoImageView = UIImage(data: data!)
+                                dashboardProduct.photoImageView = UIImage(data: data!)
                                 print("Image loaded")
-                                self.productTableView.reloadData()
+                                self.dashboardTableView.reloadData()
                             }
                         })
                         
                         //strings
-                        product.productName = data["productName"] as! String
-                        product.productID = data["userProductID"] as! String
-                        self.productArray.append(product)
+                        dashboardProduct.productName = "Name: " + (data["productName"] as! String)
+                        dashboardProduct.productID = "Product ID: " + (data["userProductID"] as! String)
+                        dashboardProduct.gramCount = data["gramCount"] as! Int
+                        dashboardProduct.labelsPrinted = data["labelsPrinted"] as! Int
+                        
+                        self.productArray.append(dashboardProduct)
                         self.configureTableView()
-                        self.productTableView.reloadData()
+                        self.dashboardTableView.reloadData()
                     }
                 }
             }
