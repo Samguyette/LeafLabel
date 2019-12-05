@@ -77,7 +77,8 @@ class PrintConViewController: UIViewController {
         ref.updateData([
             "labelsPrinted": FieldValue.increment(Int64(1))
         ])
-        
         print("Counts updated.")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { self.navigationController?.popViewController(animated: true)
+        }
     }
 }

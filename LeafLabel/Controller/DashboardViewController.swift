@@ -83,7 +83,7 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
                         //strings
                         dashboardProduct.productName = "Name: " + (data["productName"] as! String)
                         dashboardProduct.productID = "Product ID: " + (data["userProductID"] as! String)
-                        dashboardProduct.gramCount = data["gramCount"] as! Int
+                        dashboardProduct.gramCount = data["gramCount"] as! Int    
                         dashboardProduct.labelsPrinted = data["labelsPrinted"] as! Int
                         
                         self.productArray.append(dashboardProduct)
