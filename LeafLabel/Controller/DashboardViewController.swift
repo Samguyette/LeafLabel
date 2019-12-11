@@ -20,6 +20,7 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        overrideUserInterfaceStyle = .light
         //refrences to Databases
         databaseRef = Firestore.firestore()
         storageRef = Storage.storage().reference()

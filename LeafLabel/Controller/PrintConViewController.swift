@@ -11,7 +11,7 @@ import FirebaseFirestore
 import FirebaseAuth
 import FirebaseStorage
 
-class PrintConViewController: UIViewController {
+class PrintConViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var codeTextField: UITextField!
     @IBOutlet var productNameTextField: UILabel!
@@ -24,12 +24,16 @@ class PrintConViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        overrideUserInterfaceStyle = .light
+        self.gramsTextField.delegate = self
         //refrences to Databases
         databaseRef = Firestore.firestore()
         storageRef = Storage.storage().reference()
     }
     
+    
     @IBAction func searchBtn(_ sender: Any) {
+        self.view.endEditing(true)
         var userEmail = Auth.auth().currentUser?.email
         userEmail = userEmail!.replacingOccurrences(of: ".", with: ",", options: NSString.CompareOptions.literal, range: nil)
         
@@ -80,5 +84,10 @@ class PrintConViewController: UIViewController {
         print("Counts updated.")
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { self.navigationController?.popViewController(animated: true)
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 }

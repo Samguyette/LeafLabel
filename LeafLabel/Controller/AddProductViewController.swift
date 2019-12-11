@@ -21,12 +21,13 @@ class AddProductViewController: UIViewController, UITextFieldDelegate, UIImagePi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        overrideUserInterfaceStyle = .light
         productNameTextField.delegate = self
     }
     
     @IBAction func selectImageView(_ sender: Any) {
         let picker = UIImagePickerController()
+        self.view.endEditing(true)
         //might need fixing
         picker.delegate = (self as UIImagePickerControllerDelegate & UINavigationControllerDelegate)
         //picker.allowsEditing = true
@@ -84,7 +85,7 @@ class AddProductViewController: UIViewController, UITextFieldDelegate, UIImagePi
                     return
                 }
             
-                let identifier = ShortCodeGenerator.getCode(length: 8)
+                let identifier = ShortCodeGenerator.getCode(length: 4)
                 var userEmail = Auth.auth().currentUser?.email
                 let urlString = url.absoluteString
                 userEmail = userEmail!.replacingOccurrences(of: ".", with: ",", options: NSString.CompareOptions.literal, range: nil)
