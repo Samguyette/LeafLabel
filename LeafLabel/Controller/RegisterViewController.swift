@@ -31,7 +31,7 @@ class RegisterViewController: UIViewController {
                 print(error!)
             } else{
                 print("Registration Successful")
-                self.performSegue(withIdentifier: "goToMenu", sender: self)
+                self.performSegue(withIdentifier: "goToPrint", sender: self)
             }
         }
     }

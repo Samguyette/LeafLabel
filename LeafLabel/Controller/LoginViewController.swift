@@ -29,7 +29,7 @@ class LoginViewController: UIViewController {
                 print(error!)
             } else{
                 print("Login Successful")
-                self.performSegue(withIdentifier: "goToMenu", sender: self)
+                self.performSegue(withIdentifier: "goToPrint", sender: self)
             }
         }
     }

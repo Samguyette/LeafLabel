@@ -17,6 +17,7 @@
 		224AE4852364B4B9008C3B09 /* DashboardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 224AE4832364B4B9008C3B09 /* DashboardTableViewCell.xib */; };
 		22B9039823578AD60097983C /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B9039723578AD60097983C /* Product.swift */; };
 		22B9039A235794C90097983C /* AddProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B90399235794C90097983C /* AddProductViewController.swift */; };
+		22BA3B3223A12859004F4485 /* PrintButtonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BA3B3123A12859004F4485 /* PrintButtonsViewController.swift */; };
 		22FD73CE2343BE62009F73B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FD73CD2343BE62009F73B7 /* AppDelegate.swift */; };
 		22FD73D02343BE62009F73B7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FD73CF2343BE62009F73B7 /* SceneDelegate.swift */; };
 		22FD73D22343BE62009F73B7 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FD73D12343BE62009F73B7 /* WelcomeViewController.swift */; };
@@ -43,6 +44,7 @@
 		224AE4832364B4B9008C3B09 /* DashboardTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashboardTableViewCell.xib; sourceTree = "<group>"; };
 		22B9039723578AD60097983C /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		22B90399235794C90097983C /* AddProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductViewController.swift; sourceTree = "<group>"; };
+		22BA3B3123A12859004F4485 /* PrintButtonsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintButtonsViewController.swift; sourceTree = "<group>"; };
 		22FD73CA2343BE62009F73B7 /* LeafLabel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeafLabel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22FD73CD2343BE62009F73B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22FD73CF2343BE62009F73B7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				22FD73ED2343E9A1009F73B7 /* MenuViewController.swift */,
 				220DD2C7235657B400ACEC47 /* DisplayProductsViewController.swift */,
 				224AE47A2364A333008C3B09 /* DashboardViewController.swift */,
+				22BA3B3123A12859004F4485 /* PrintButtonsViewController.swift */,
 				224AE47823647573008C3B09 /* PrintConViewController.swift */,
 				22B90399235794C90097983C /* AddProductViewController.swift */,
 				22FD73EF2343ECD4009F73B7 /* LoginViewController.swift */,
@@ -288,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22FD73F02343ECD4009F73B7 /* LoginViewController.swift in Sources */,
+				22BA3B3223A12859004F4485 /* PrintButtonsViewController.swift in Sources */,
 				22FD73D22343BE62009F73B7 /* WelcomeViewController.swift in Sources */,
 				224AE47923647573008C3B09 /* PrintConViewController.swift in Sources */,
 				22B9039A235794C90097983C /* AddProductViewController.swift in Sources */,

@@ -15,12 +15,9 @@ class MenuViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         overrideUserInterfaceStyle = .light
-        self.navigationItem.hidesBackButton = true
         // Do any additional setup after loading the view.
     }
-    
-
-    @IBAction func logOffPressed(_ sender: Any) {
+    @IBAction func logOffBtn(_ sender: Any) {
         do{
             try Auth.auth().signOut()
             navigationController?.popToRootViewController(animated: true)
