@@ -13,7 +13,6 @@ import FirebaseStorage
 
 class PrintConViewController: UIViewController, UITextFieldDelegate {
 
-    @IBOutlet var codeTextField: UITextField!
     @IBOutlet var productNameTextField: UILabel!
     @IBOutlet var labelImageView: UIImageView!
     @IBOutlet var gramsTextField: UITextField!
@@ -21,6 +20,7 @@ class PrintConViewController: UIViewController, UITextFieldDelegate {
     var databaseRef: Firestore!
     var storageRef: StorageReference!
     var compProductID = ""
+    var qrPulledID = "1234"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,10 +30,9 @@ class PrintConViewController: UIViewController, UITextFieldDelegate {
         databaseRef = Firestore.firestore()
         storageRef = Storage.storage().reference()
     }
-    
-    
-    @IBAction func searchBtn(_ sender: Any) {
-        self.view.endEditing(true)
+    override func viewDidAppear(_ animated: Bool) {
+        print("viewDidAppear is running")
+        print(qrPulledID)
         var userEmail = Auth.auth().currentUser?.email
         userEmail = userEmail!.replacingOccurrences(of: ".", with: ",", options: NSString.CompareOptions.literal, range: nil)
         
@@ -47,7 +46,8 @@ class PrintConViewController: UIViewController, UITextFieldDelegate {
 
                     for document in snapshot.documents {
                         let data = document.data()
-                        if data["userProductID"] as? String == self.codeTextField.text{
+                        //where QR code data replaces
+                        if data["userProductID"] as? String == self.qrPulledID{
                             self.compProductID = data["compProductID"] as! String
                             //photo
                             let urlString = data["imageURL"] as! String
@@ -65,6 +65,10 @@ class PrintConViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    @IBAction func searchBtn(_ sender: Any) {
+        self.performSegue(withIdentifier: "goToCamera", sender: self)
+    }
+
     @IBAction func printBtn(_ sender: Any) {
         var userEmail = Auth.auth().currentUser?.email
         userEmail = userEmail!.replacingOccurrences(of: ".", with: ",", options: NSString.CompareOptions.literal, range: nil)

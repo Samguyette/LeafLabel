@@ -18,6 +18,7 @@
 		22B9039823578AD60097983C /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B9039723578AD60097983C /* Product.swift */; };
 		22B9039A235794C90097983C /* AddProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B90399235794C90097983C /* AddProductViewController.swift */; };
 		22BA3B3223A12859004F4485 /* PrintButtonsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BA3B3123A12859004F4485 /* PrintButtonsViewController.swift */; };
+		22BA3B3423A1580F004F4485 /* ScanQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BA3B3323A1580F004F4485 /* ScanQRViewController.swift */; };
 		22FD73CE2343BE62009F73B7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FD73CD2343BE62009F73B7 /* AppDelegate.swift */; };
 		22FD73D02343BE62009F73B7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FD73CF2343BE62009F73B7 /* SceneDelegate.swift */; };
 		22FD73D22343BE62009F73B7 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FD73D12343BE62009F73B7 /* WelcomeViewController.swift */; };
@@ -26,7 +27,6 @@
 		22FD73DA2343BE64009F73B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22FD73D82343BE64009F73B7 /* LaunchScreen.storyboard */; };
 		22FD73E62343BFC4009F73B7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22FD73E52343BFC4009F73B7 /* GoogleService-Info.plist */; };
 		22FD73EA2343CE91009F73B7 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FD73E92343CE91009F73B7 /* RegisterViewController.swift */; };
-		22FD73EC2343D029009F73B7 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22FD73EB2343D029009F73B7 /* Default-568h@2x.png */; };
 		22FD73EE2343E9A1009F73B7 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FD73ED2343E9A1009F73B7 /* MenuViewController.swift */; };
 		22FD73F02343ECD4009F73B7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FD73EF2343ECD4009F73B7 /* LoginViewController.swift */; };
 		FEC376E24BA6D4402F92C0ED /* Pods_LeafLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B80F14F2C14270F4A8F8AAC3 /* Pods_LeafLabel.framework */; };
@@ -45,6 +45,7 @@
 		22B9039723578AD60097983C /* Product.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		22B90399235794C90097983C /* AddProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductViewController.swift; sourceTree = "<group>"; };
 		22BA3B3123A12859004F4485 /* PrintButtonsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintButtonsViewController.swift; sourceTree = "<group>"; };
+		22BA3B3323A1580F004F4485 /* ScanQRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRViewController.swift; sourceTree = "<group>"; };
 		22FD73CA2343BE62009F73B7 /* LeafLabel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeafLabel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22FD73CD2343BE62009F73B7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22FD73CF2343BE62009F73B7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,7 +56,6 @@
 		22FD73DB2343BE64009F73B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "LeafLabel/Supporting Files/Info.plist"; sourceTree = SOURCE_ROOT; };
 		22FD73E52343BFC4009F73B7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		22FD73E92343CE91009F73B7 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		22FD73EB2343D029009F73B7 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		22FD73ED2343E9A1009F73B7 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		22FD73EF2343ECD4009F73B7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B80F14F2C14270F4A8F8AAC3 /* Pods_LeafLabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LeafLabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,7 +77,6 @@
 		22FD73C12343BE62009F73B7 = {
 			isa = PBXGroup;
 			children = (
-				22FD73EB2343D029009F73B7 /* Default-568h@2x.png */,
 				22FD73CC2343BE62009F73B7 /* LeafLabel */,
 				22FD73CB2343BE62009F73B7 /* Products */,
 				D13E3E221D7646C735392CF4 /* Pods */,
@@ -125,6 +124,7 @@
 				220DD2C7235657B400ACEC47 /* DisplayProductsViewController.swift */,
 				224AE47A2364A333008C3B09 /* DashboardViewController.swift */,
 				22BA3B3123A12859004F4485 /* PrintButtonsViewController.swift */,
+				22BA3B3323A1580F004F4485 /* ScanQRViewController.swift */,
 				224AE47823647573008C3B09 /* PrintConViewController.swift */,
 				22B90399235794C90097983C /* AddProductViewController.swift */,
 				22FD73EF2343ECD4009F73B7 /* LoginViewController.swift */,
@@ -236,7 +236,6 @@
 				220DD2D2235667A400ACEC47 /* ProductViewCellTableViewCell.xib in Resources */,
 				22FD73D72343BE64009F73B7 /* Assets.xcassets in Resources */,
 				224AE4852364B4B9008C3B09 /* DashboardTableViewCell.xib in Resources */,
-				22FD73EC2343D029009F73B7 /* Default-568h@2x.png in Resources */,
 				22FD73D52343BE62009F73B7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,6 +301,7 @@
 				224AE47B2364A333008C3B09 /* DashboardViewController.swift in Sources */,
 				224AE4812364AACF008C3B09 /* DashboardProduct.swift in Sources */,
 				220DD2D1235667A400ACEC47 /* ProductViewCellTableViewCell.swift in Sources */,
+				22BA3B3423A1580F004F4485 /* ScanQRViewController.swift in Sources */,
 				220DD2C8235657B400ACEC47 /* DisplayProductsViewController.swift in Sources */,
 				22FD73D02343BE62009F73B7 /* SceneDelegate.swift in Sources */,
 				22FD73EA2343CE91009F73B7 /* RegisterViewController.swift in Sources */,

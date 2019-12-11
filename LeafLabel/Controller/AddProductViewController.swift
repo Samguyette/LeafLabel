@@ -5,7 +5,6 @@
 //  Created by Sam Guyette on 10/16/19.
 //  Copyright © 2019 Sam Guyette. All rights reserved.
 //
-
 import UIKit
 import FirebaseFirestore
 import FirebaseStorage
@@ -85,7 +84,7 @@ class AddProductViewController: UIViewController, UITextFieldDelegate, UIImagePi
                     return
                 }
             
-                let identifier = ShortCodeGenerator.getCode(length: 4)
+                let identifier = ShortCodeGenerator.getCode(length: 10)
                 var userEmail = Auth.auth().currentUser?.email
                 let urlString = url.absoluteString
                 userEmail = userEmail!.replacingOccurrences(of: ".", with: ",", options: NSString.CompareOptions.literal, range: nil)
