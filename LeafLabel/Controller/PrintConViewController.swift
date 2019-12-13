@@ -16,6 +16,7 @@ class PrintConViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var productNameTextField: UILabel!
     @IBOutlet var labelImageView: UIImageView!
     @IBOutlet var gramsTextField: UITextField!
+    @IBOutlet var textFeildBottomConstraint: NSLayoutConstraint!
     
     var databaseRef: Firestore!
     var storageRef: StorageReference!
@@ -29,10 +30,13 @@ class PrintConViewController: UIViewController, UITextFieldDelegate {
         //refrences to Databases
         databaseRef = Firestore.firestore()
         storageRef = Storage.storage().reference()
+        //keyboard listener
+         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
     }
     override func viewDidAppear(_ animated: Bool) {
         print("viewDidAppear is running")
         print(qrPulledID)
+        
         var userEmail = Auth.auth().currentUser?.email
         userEmail = userEmail!.replacingOccurrences(of: ".", with: ",", options: NSString.CompareOptions.literal, range: nil)
         
@@ -92,6 +96,24 @@ class PrintConViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
+        self.textFeildBottomConstraint.constant = 20
         return false
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification){
+        if let info = notification.userInfo{
+            let rect:CGRect = info["UIKeyboardFrameEndUserInfoKey"] as! CGRect
+            self.view.layoutIfNeeded()
+            UIView.animate(withDuration: 0.5, animations: {
+                self.view.layoutIfNeeded()
+                self.textFeildBottomConstraint.constant = rect.height + 5
+            })
+        }
+    }
+}
+
+extension ScanQRViewController {
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        (viewController as? PrintConViewController)?.qrPulledID = qrID
     }
 }

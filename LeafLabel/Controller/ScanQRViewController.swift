@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class ScanQRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate{
+class ScanQRViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, UINavigationControllerDelegate{
     
     var qrID = ""
     var video = AVCaptureVideoPreviewLayer()
@@ -18,6 +18,8 @@ class ScanQRViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.endEditing(true)
+        
+        navigationController?.delegate = self
 
         //open up camera to scan QR
         guard let
@@ -44,19 +46,17 @@ class ScanQRViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         view.layer.addSublayer(video)
         
         session.startRunning()
-        // Do any additional setup after loading the view.
     }
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         if metadataObjects.count != 0 {
             if let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject {
                 if object.type == AVMetadataObject.ObjectType.qr {
-                    print(object.stringValue!)
+                    //pass qrID to Print VC
                     qrID = object.stringValue!
-                    func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-                        let printController = segue.destination as! PrintConViewController
-                        printController.qrPulledID = qrID
-                    }
+                    print(qrID)
+                    
+                    //look at push back in video
                     _ = navigationController?.popViewController(animated: true)
                     session.stopRunning()
                 }

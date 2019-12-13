@@ -325,7 +325,7 @@
         <!--Print Consumer Label-->
         <scene sceneID="0Gd-KL-v4U">
             <objects>
-                <viewController id="0af-Er-7fL" customClass="PrintConViewController" customModule="LeafLabel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PrintConViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0af-Er-7fL" customClass="PrintConViewController" customModule="LeafLabel" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KfF-Za-awP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -405,9 +405,10 @@
                     </view>
                     <navigationItem key="navigationItem" title="Print Consumer Label" id="ibx-9s-yz8"/>
                     <connections>
-                        <outlet property="gramsTextField" destination="Tzv-G7-myC" id="mRR-ew-pXK"/>
+                        <outlet property="gramsTextField" destination="Tzv-G7-myC" id="Fz3-Hj-AqZ"/>
                         <outlet property="labelImageView" destination="2PV-ib-WRJ" id="yV1-OI-bhc"/>
                         <outlet property="productNameTextField" destination="c9G-eH-mBB" id="UEj-1p-DJD"/>
+                        <outlet property="textFeildBottomConstraint" destination="7F7-BO-4fG" id="xtV-Ss-11B"/>
                         <segue destination="5Rp-9N-o4l" kind="show" identifier="goToCamera" id="dIC-wU-B9o"/>
                     </connections>
                 </viewController>
@@ -418,7 +419,7 @@
         <!--ScanQR View Controller-->
         <scene sceneID="d7c-PC-up5">
             <objects>
-                <viewController id="5Rp-9N-o4l" customClass="ScanQRViewController" customModule="LeafLabel" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ScanQRVC" id="5Rp-9N-o4l" customClass="ScanQRViewController" customModule="LeafLabel" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JxC-lk-rW1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
