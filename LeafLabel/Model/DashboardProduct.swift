@@ -14,4 +14,5 @@ class DashboardProduct{
     var gramCount : Int = 0
     var productID : String = ""
     var photoImageView : UIImage? = nil
+    var inStock: Bool = true
 }

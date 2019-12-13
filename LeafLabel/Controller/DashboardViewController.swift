@@ -39,7 +39,7 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: "customDashboardCell", for: indexPath) as! DashboardTableViewCell
         cell.productName.text = productArray[indexPath.row].productName
         cell.productID.text = productArray[indexPath.row].productID
-        //cell.productImageView.image = productArray[indexPath.row].photoImageView
+        cell.inStockSwitch.setOn(productArray[indexPath.row].inStock, animated: false)
         cell.labelsPrinted.text = "\(productArray[indexPath.row].labelsPrinted)"
         cell.gramCount.text = "\(productArray[indexPath.row].gramCount)"
         

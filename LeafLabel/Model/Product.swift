@@ -10,4 +10,5 @@ class Product {
     var productName : String = ""
     var productID : String = ""
     var photoImageView : UIImage? = nil
+    var inStock: Bool = true
 }

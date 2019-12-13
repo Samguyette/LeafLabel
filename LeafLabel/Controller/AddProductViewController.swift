@@ -94,7 +94,7 @@ class AddProductViewController: UIViewController, UITextFieldDelegate, UIImagePi
                 let dataRef = Firestore.firestore().collection(userEmail!).document()
                 let documentID = dataRef.documentID
                 
-                let productDict = ["productName": self.productNameTextField.text!, "userProductID": identifier, "compProductID": documentID, "imageURL": urlString, "imageName": imageName, "gramCount": 0, "labelsPrinted": 0] as [String : Any]
+                let productDict = ["productName": self.productNameTextField.text!, "userProductID": identifier, "compProductID": documentID, "imageURL": urlString, "imageName": imageName, "gramCount": 0, "labelsPrinted": 0, "inStock": 0] as [String : Any]
                 
                 dataRef.setData(productDict) { (error) in
                     if error != nil{
