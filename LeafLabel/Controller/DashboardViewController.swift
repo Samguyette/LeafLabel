@@ -39,7 +39,11 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: "customDashboardCell", for: indexPath) as! DashboardTableViewCell
         cell.productName.text = productArray[indexPath.row].productName
         cell.productID.text = productArray[indexPath.row].productID
-        cell.inStockSwitch.setOn(productArray[indexPath.row].inStock, animated: false)
+        if productArray[indexPath.row].inStock {
+            cell.inStockSwitch.setOn(true, animated: false)
+        } else {
+            cell.inStockSwitch.setOn(false, animated: false)
+        }
         cell.labelsPrinted.text = "\(productArray[indexPath.row].labelsPrinted)"
         cell.gramCount.text = "\(productArray[indexPath.row].gramCount)"
         
@@ -86,6 +90,11 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
                         dashboardProduct.productID = "Product ID: " + (data["userProductID"] as! String)
                         dashboardProduct.gramCount = data["gramCount"] as! Int    
                         dashboardProduct.labelsPrinted = data["labelsPrinted"] as! Int
+                        if data["inStock"] as! Int == 0 {
+                            dashboardProduct.inStock = true
+                        } else {
+                            dashboardProduct.inStock = false
+                        }
                         
                         self.productArray.append(dashboardProduct)
                         self.configureTableView()

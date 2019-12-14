@@ -77,11 +77,14 @@ class DashboardTableViewCell: UITableViewCell {
 
                     for document in snapshot.documents {
                         let data = document.data()
-                        print(data["userProductID"] as! String)
-                        print(self.productID.text!)
                         let pulledID = data["userProductID"] as! String
-                        if pulledID.contains(self.productID.text!) {
-                            print("HH")
+                        var count = 0
+                        for char in self.productID.text!{
+                            if pulledID.contains(char){
+                                count = count + 1
+                            }
+                        }
+                        if count > 9 {
                             self.compProductID = data["compProductID"] as! String
                             self.inStock = data["inStock"] as! Int
                         }
