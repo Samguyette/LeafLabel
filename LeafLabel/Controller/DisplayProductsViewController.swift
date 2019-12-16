@@ -38,7 +38,6 @@ class DisplayProductsViewController: UIViewController, UITableViewDelegate, UITa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customProductCell", for: indexPath) as! ProductViewCellTableViewCell
         cell.productName.text = productArray[indexPath.row].productName
-        cell.productID.text = productArray[indexPath.row].productID
         cell.photoImageView.image = productArray[indexPath.row].photoImageView
         
         return cell
@@ -47,8 +46,8 @@ class DisplayProductsViewController: UIViewController, UITableViewDelegate, UITa
         return productArray.count
     }
     func configureTableView() {
-        productTableView.rowHeight = 120.0
-        productTableView.estimatedRowHeight = 120.0
+        productTableView.rowHeight = 140.0
+        productTableView.estimatedRowHeight = 140.0
     }
     
     func retrieveProducts(){
@@ -81,7 +80,6 @@ class DisplayProductsViewController: UIViewController, UITableViewDelegate, UITa
                         
                         //strings
                         product.productName = data["productName"] as! String
-                        product.productID = data["userProductID"] as! String
                         self.productArray.append(product)
                         self.configureTableView()
                         self.productTableView.reloadData()

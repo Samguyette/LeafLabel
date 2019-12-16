@@ -29,6 +29,7 @@ class RegisterViewController: UIViewController {
             (user, error) in
             if error != nil{
                 print(error!)
+                self.createAlert(title: "Error", message: "Not a valid email or password.")
             } else{
                 print("Registration Successful")
                 self.performSegue(withIdentifier: "goToPrint", sender: self)
@@ -36,19 +37,11 @@ class RegisterViewController: UIViewController {
         }
     }
     
-    
-    
-    
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func createAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Error", style: UIAlertAction.Style.default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
-    */
-
 }

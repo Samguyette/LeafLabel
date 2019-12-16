@@ -87,19 +87,18 @@ class DashboardTableViewCell: UITableViewCell {
                         if count > 9 {
                             self.compProductID = data["compProductID"] as! String
                             self.inStock = data["inStock"] as! Int
+                            let ref = self.databaseRef.collection(userEmail!).document(self.compProductID)
+                            if self.inStock == 1 {
+                                self.inStock = self.inStock-1
+                                ref.updateData(["inStock": FieldValue.increment(Int64(-1))])
+                            } else {
+                                self.inStock = self.inStock+1
+                                ref.updateData(["inStock": FieldValue.increment(Int64(1))])
+                            }
                         }
                     }
                 }
             }
-        }
-
-        let ref = databaseRef.collection(userEmail!).document(compProductID)
-        if inStock == 1 {
-            inStock = inStock-1
-            ref.updateData(["inStock": FieldValue.increment(Int64(-1))])
-        } else {
-            inStock = inStock+1
-            ref.updateData(["inStock": FieldValue.increment(Int64(1))])
         }
     }
 }

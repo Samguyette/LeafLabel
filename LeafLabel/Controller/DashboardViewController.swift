@@ -91,9 +91,9 @@ class DashboardViewController: UIViewController, UITableViewDelegate, UITableVie
                         dashboardProduct.gramCount = data["gramCount"] as! Int    
                         dashboardProduct.labelsPrinted = data["labelsPrinted"] as! Int
                         if data["inStock"] as! Int == 0 {
-                            dashboardProduct.inStock = true
-                        } else {
                             dashboardProduct.inStock = false
+                        } else {
+                            dashboardProduct.inStock = true
                         }
                         
                         self.productArray.append(dashboardProduct)
