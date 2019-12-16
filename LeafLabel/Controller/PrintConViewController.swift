@@ -10,6 +10,7 @@ import UIKit
 import FirebaseFirestore
 import FirebaseAuth
 import FirebaseStorage
+import WebKit
 
 class PrintConViewController: UIViewController, UITextFieldDelegate {
 
@@ -17,11 +18,13 @@ class PrintConViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var labelImageView: UIImageView!
     @IBOutlet var gramsTextField: UITextField!
     @IBOutlet var textFeildBottomConstraint: NSLayoutConstraint!
+    @IBOutlet var printWebView: WKWebView!
     
     var databaseRef: Firestore!
     var storageRef: StorageReference!
     var compProductID = ""
     var qrPulledID = "1234"
+    var html = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +61,11 @@ class PrintConViewController: UIViewController, UITextFieldDelegate {
                             Storage.storage().reference(forURL: urlString).getData(maxSize: 10 * 1024 * 1024, completion: { (data, error) in
                                 DispatchQueue.main.async {
                                     self.labelImageView.image = UIImage(data: data!)
-                                    print("Image found.")
+                                    let image = UIImage(data: data!)
+                                    let data = image!.pngData()
+                                    let base64 = data!.base64EncodedString(options: [])
+                                    let url = "data:application/png;base64," + base64
+                                    self.html = "<html><img src='\(url)'></html>"
                                 }
                             })
                             self.productNameTextField.text = data["productName"] as? String
@@ -90,8 +97,23 @@ class PrintConViewController: UIViewController, UITextFieldDelegate {
             "labelsPrinted": FieldValue.increment(Int64(1))
         ])
         print("Counts updated.")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { self.navigationController?.popViewController(animated: true)
-        }
+        
+        //actually print
+        let printController = UIPrintInteractionController.shared
+        let printInfo = UIPrintInfo(dictionary:nil)
+        //define print specs
+        printInfo.orientation = UIPrintInfo.Orientation.landscape
+        printInfo.outputType = .general
+        printInfo.jobName = "print Job"
+        printController.printInfo = printInfo
+
+        let formatter = UIMarkupTextPrintFormatter(markupText: html)
+        formatter.perPageContentInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        printController.printFormatter = formatter
+        printController.present(animated: true, completionHandler: nil)
+        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { self.navigationController?.popViewController(animated: true)
+//        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
