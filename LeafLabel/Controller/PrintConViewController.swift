@@ -17,6 +17,7 @@ class PrintConViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var productNameTextField: UILabel!
     @IBOutlet var labelImageView: UIImageView!
     @IBOutlet var gramsTextField: UITextField!
+    @IBOutlet var custNameTextField: UITextField!
     @IBOutlet var textFeildBottomConstraint: NSLayoutConstraint!
     @IBOutlet var printWebView: WKWebView!
     
@@ -34,7 +35,13 @@ class PrintConViewController: UIViewController, UITextFieldDelegate {
         databaseRef = Firestore.firestore()
         storageRef = Storage.storage().reference()
         //keyboard listener
-         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        //Looks for single or multiple taps.
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+
+        //Uncomment the line below if you want the tap not not interfere and cancel other interactions.
+        //tap.cancelsTouchesInView = false
+
+        view.addGestureRecognizer(tap)
     }
     override func viewDidAppear(_ animated: Bool) {
         print("viewDidAppear is running")
@@ -60,12 +67,7 @@ class PrintConViewController: UIViewController, UITextFieldDelegate {
                             let urlString = data["imageURL"] as! String
                             Storage.storage().reference(forURL: urlString).getData(maxSize: 10 * 1024 * 1024, completion: { (data, error) in
                                 DispatchQueue.main.async {
-                                    self.labelImageView.image = UIImage(data: data!)
-                                    let image = UIImage(data: data!)
-                                    let data = image!.pngData()
-                                    let base64 = data!.base64EncodedString(options: [])
-                                    let url = "data:application/png;base64," + base64
-                                    self.html = "<html><img src='\(url)'></html>"
+                                    self.labelImageView.image = UIImage(data: data!)!
                                 }
                             })
                             self.productNameTextField.text = data["productName"] as? String
@@ -80,6 +82,18 @@ class PrintConViewController: UIViewController, UITextFieldDelegate {
         self.performSegue(withIdentifier: "goToCamera", sender: self)
     }
 
+    @IBAction func createCutomLabelBtn(_ sender: Any) {
+        dismissKeyboard()
+        let text = "Purchased: " + gramsTextField.text! + "g\nOwner: " + custNameTextField.text!
+        let image = self.textToImage(drawText: text, inImage: self.labelImageView.image!, atPoint: CGPoint(x: 20, y: 20))
+        
+        self.labelImageView.image = image
+        let data = image.pngData()
+        let base64 = data!.base64EncodedString(options: [])
+        let url = "data:application/png;base64," + base64
+        self.html = "<html><img style='max-width: 840px; height: auto; ' src='\(url)'></html>"
+    }
+    
     @IBAction func printBtn(_ sender: Any) {
         var userEmail = Auth.auth().currentUser?.email
         userEmail = userEmail!.replacingOccurrences(of: ".", with: ",", options: NSString.CompareOptions.literal, range: nil)
@@ -104,7 +118,7 @@ class PrintConViewController: UIViewController, UITextFieldDelegate {
         //define print specs
         printInfo.orientation = UIPrintInfo.Orientation.landscape
         printInfo.outputType = .general
-        printInfo.jobName = "print Job"
+        printInfo.jobName = "Print Job"
         printController.printInfo = printInfo
 
         let formatter = UIMarkupTextPrintFormatter(markupText: html)
@@ -122,15 +136,31 @@ class PrintConViewController: UIViewController, UITextFieldDelegate {
         return false
     }
     
-    @objc func keyboardWillShow(notification: NSNotification){
-        if let info = notification.userInfo{
-            let rect:CGRect = info["UIKeyboardFrameEndUserInfoKey"] as! CGRect
-            self.view.layoutIfNeeded()
-            UIView.animate(withDuration: 0.5, animations: {
-                self.view.layoutIfNeeded()
-                self.textFeildBottomConstraint.constant = rect.height + 5
-            })
-        }
+    @objc func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
+    
+    func textToImage(drawText text: String, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
+       let textColor = UIColor.white
+       let textFont = UIFont(name: "HiraginoSans-W6", size: 12)!
+
+       let scale = UIScreen.main.scale
+       UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
+
+       let textFontAttributes = [
+        NSAttributedString.Key.font: textFont,
+        NSAttributedString.Key.foregroundColor: textColor,
+        ] as [NSAttributedString.Key : Any]
+       image.draw(in: CGRect(origin: CGPoint.zero, size: image.size))
+
+       let rect = CGRect(origin: point, size: image.size)
+       text.draw(in: rect, withAttributes: textFontAttributes)
+
+       let newImage = UIGraphicsGetImageFromCurrentImageContext()
+       UIGraphicsEndImageContext()
+
+       return newImage!
     }
 }
 
