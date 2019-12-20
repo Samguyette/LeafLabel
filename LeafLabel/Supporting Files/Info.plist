@@ -18,6 +18,8 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>Our application needs permission to write photos...</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Allow camera to be used to scan QR code?</string>
 	<key>LSRequiresIPhoneOS</key>

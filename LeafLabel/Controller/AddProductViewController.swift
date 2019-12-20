@@ -58,18 +58,21 @@ class AddProductViewController: UIViewController, UITextFieldDelegate, UIImagePi
     @IBAction func addPressed(_ sender: Any) {
         productNameTextField.isEnabled = false
         addProductBtn.isEnabled = false
-        
+        let identifier = ShortCodeGenerator.getCode(length: 10)
         //loading image
         
         //store image
-        guard let image = demoImageView.image, let data = image.jpegData(compressionQuality: 1.0) else{
-            print("Something went wrong uploading picture.")
-            return
-        }
+        let image = demoImageView.image
+        let imageQR = addQR(image: image!, identifier: identifier)
+        let data = imageQR.jpegData(compressionQuality: 1.0)
+//        guard let image = demoImageView.image, let data = image.jpegData(compressionQuality: 1.0) else{
+//            print("Something went wrong uploading picture.")
+//            return
+//        }
         let imageName = UUID().uuidString
         let imageRef = Storage.storage().reference().child("imagesFolder").child(imageName)
         
-        imageRef.putData(data, metadata: nil) { (metadata, err) in
+        imageRef.putData(data!, metadata: nil) { (metadata, err) in
             if err != nil{
                 print("There was a problem storing picture.")
                 return
@@ -84,7 +87,6 @@ class AddProductViewController: UIViewController, UITextFieldDelegate, UIImagePi
                     return
                 }
             
-                let identifier = ShortCodeGenerator.getCode(length: 10)
                 var userEmail = Auth.auth().currentUser?.email
                 let urlString = url.absoluteString
                 userEmail = userEmail!.replacingOccurrences(of: ".", with: ",", options: NSString.CompareOptions.literal, range: nil)
@@ -132,4 +134,54 @@ class AddProductViewController: UIViewController, UITextFieldDelegate, UIImagePi
             return code
         }
     }
+    
+    func addQR(image: UIImage, identifier: String) -> UIImage {
+        let data = identifier.data(using: .ascii, allowLossyConversion: false)
+        let filter = CIFilter(name: "CIQRCodeGenerator")
+        filter?.setValue(data, forKey: "inputMessage")
+        
+        let qr = UIImage(ciImage: (filter?.outputImage)!)
+        
+        let imgQR = image.overlayed(with: qr)
+        
+        //try to update UIImageView
+        let imgQRView = UIImageView(image: imgQR)
+        demoImageView = imgQRView
+        
+        //save image to device
+        UIImageWriteToSavedPhotosAlbum(imgQR!, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+        
+        //return image
+        return imgQR!
+    }
+    
+    //helper function to save custom label to photos library
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            // we got back an error!
+            let ac = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        } else {
+            let ac = UIAlertController(title: "Saved!", message: "Your altered image has been saved to your photos.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        }
+    }
 }
+
+extension UIImage {
+    func overlayed(with overlay: UIImage) -> UIImage? {
+        defer {
+            UIGraphicsEndImageContext()
+        }
+        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        self.draw(in: CGRect(origin: CGPoint.zero, size: size))
+        overlay.draw(in: CGRect(x: size.width-60, y: 0, width: 60, height: 60))
+        if let image = UIGraphicsGetImageFromCurrentImageContext() {
+            return image
+        }
+        return nil
+    }
+}
+

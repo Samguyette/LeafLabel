@@ -143,7 +143,7 @@ class PrintConViewController: UIViewController, UITextFieldDelegate {
     
     func textToImage(drawText text: String, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
        let textColor = UIColor.white
-       let textFont = UIFont(name: "HiraginoSans-W6", size: 12)!
+       let textFont = UIFont(name: "HiraginoSans-W6", size: 14)!
 
        let scale = UIScreen.main.scale
        UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
